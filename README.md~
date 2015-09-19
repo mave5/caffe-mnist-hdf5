@@ -4,7 +4,7 @@
 The original Caffe-MNIST example accepts data in LMDB format. It uses convert_mnist_data.cpp to convert data into LMDB.
 If you want to use the original Caffe-MNIST example for your specific task and data, you need to constumozie convert_mnist_data.cpp to convert your data into LMDB format. 
 
-However, Caffe accepts HDF5 format as well. HDF5 format is easier to convert. Here, we changed the mnist example to work with HDF5 format. Note that you should obtain the same accuarcy (around 0.99) with HDF5 as in LMDB.
+However, Caffe accepts HDF5 format as well which is easier to convert. Here, we changed the mnist example to work with HDF5 format. Note that you should obtain the same accuarcy (around 0.99) with HDF5 as in LMDB.
 
 To convert mnist data to HDF5 format, a MATLAB code is used. Note that reshape and permutation are crucial.
 
@@ -40,10 +40,37 @@ h5write('train.hdf5','/label',trainLabels);
 % same for test data
 
 --------------------------------------------------------------------------------------
-Then change lenet_train_test.prototxt as in the file.
+Then only change lenet_train_test.prototxt as below.
 Note that source is a text file, which contains the address of your training and test data in HDF5 format.
 
 
+name: "LeNet"
+layer {
+  name: "mnist"
+  type: "HDF5Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TRAIN
+  }
+  hdf5_data_param {
+    source: "examples/mnist/mnist_train_hdf/train_loc.txt"
+    batch_size: 64
+  }
+}
+layer {
+  name: "mnist"
+  type: "HDF5Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TEST
+  }
+  hdf5_data_param {
+    source: "examples/mnist/mnist_test_hdf/test_loc.txt"
+    batch_size: 100
+  }
+}
 
 
 
