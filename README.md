@@ -6,7 +6,7 @@ The original Caffe-MNIST example accepts data in LMDB format. It uses convert_mn
 If you want to use the original Caffe-MNIST example for your specific task and data, you need to constumozie convert_mnist_data.cpp 
 to convert your data into LMDB format. 
 
-However, Caffe accepts HDF5 format, which is easier to convert. Here, we changed the mnist example to work with HDF5 format.
+However, Caffe accepts HDF5 format as well. HDF5 format is easier to convert. Here, we changed the mnist example to work with HDF5 format.
 To convert mnist data to HDF5 format, a MATLAB code is used. Note that reshape and permutation are crucial.
 ----------------------------------------------------------------------------
 % train-images.idx3-ubyte / train-labels.idx1-ubyte
