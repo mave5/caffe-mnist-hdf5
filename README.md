@@ -10,29 +10,38 @@ However, Caffe accepts HDF5 format as well. HDF5 format is easier to convert. He
 To convert mnist data to HDF5 format, a MATLAB code is used. Note that reshape and permutation are crucial.
 ----------------------------------------------------------------------------
 % train-images.idx3-ubyte / train-labels.idx1-ubyte
+
 images = loadMNISTImages('train-images-idx3-ubyte');
+
 labels = loadMNISTLabels('train-labels-idx1-ubyte');
  
 % reshape images to 4-D: [rows,col,channel,numbers]
+
 trainData=reshape(images,[28 28 1 size(images,2)]);
 
 % permute to [cols,rows,channel,numbers]
+
 trainData=permute(trainData,[2 1 3 4]);
 
 % permute lables to [labels, number of labels ]
+
 trainLabels=permute(labels,[2,1]);
 
 % create database
+
 h5create('train.hdf5','/data',size(trainData),'Datatype','double');
+
 h5create('train.hdf5','/label',size(trainLabels),'Datatype','double');
 
 h5write('train.hdf5','/data',trainData);
+
 h5write('train.hdf5','/label',trainLabels);
 
 % same for test data
 --------------------------------------------------------------------------------------
 
 Then change lenet_train_test.prototxt as below.
+
 Note that source is a text file, which contains the address of your training and test data in HDF5 format.
 
 name: "LeNet"
