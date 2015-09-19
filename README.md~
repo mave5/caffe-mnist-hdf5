@@ -40,7 +40,7 @@ h5write('train.hdf5','/label',trainLabels);
 % same for test data
 
 --------------------------------------------------------------------------------------
-Then only change lenet_train_test.prototxt as below.
+Then only change lenet_train_test.prototxt as below. The rest of the files in mnist example remain the same.
 Note that source is a text file, which contains the address of your training and test data in HDF5 format.
 
 
