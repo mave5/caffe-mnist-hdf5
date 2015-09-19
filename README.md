@@ -2,7 +2,7 @@
 Data in HDF5 format 
 
 
-The original Caffe-MNIST example, accepts data in LMDB format. It uses convert_mnist_data.cpp to convert data into LMDB.
+The original Caffe-MNIST example accepts data in LMDB format. It uses convert_mnist_data.cpp to convert data into LMDB.
 If you want to use the original Caffe-MNIST example for your specific task and data, you need to constumozie convert_mnist_data.cpp 
 to convert your data into LMDB format. 
 
