@@ -1,12 +1,12 @@
 # caffe-mnist-hdf5
 
 
-The original Caffe-MNIST example accepts data in LMDB format. It uses convert_mnist_data.cpp to convert data into LMDB.
-If you want to use the original Caffe-MNIST example for your specific task and data, you need to constumozie convert_mnist_data.cpp to convert your data into LMDB format. 
+The original Caffe-MNIST example accepts data in the LMDB format. It uses convert_mnist_data.cpp to convert data into LMDB.
+If you want to use the original Caffe-MNIST example for your specific task and data, you need to constumozie convert_mnist_data.cpp to convert your data into the LMDB format, which is not straightforward. 
 
-However, Caffe accepts HDF5 format as well which is easier to convert. Here, we changed the mnist example to work with HDF5 format. Note that you should obtain the same accuarcy (around 0.99) with HDF5 as in LMDB.
+However, Caffe accepts the HDF5 format as well, which is easier to convert. Here, we changed the mnist example to work with HDF5 format. Note that you should obtain the same accuarcy (around 0.99) with HDF5 as in LMDB.
 
-To convert mnist data to HDF5 format, a MATLAB code is used. Note that reshape and permutation are crucial.
+To convert the mnist data to HDF5 format, a MATLAB code is used. Note that reshape and permutation are crucial.
 
 ----------------------------------------------------------------------------
 % train-images.idx3-ubyte / train-labels.idx1-ubyte
@@ -41,7 +41,7 @@ h5write('train.hdf5','/label',trainLabels);
 
 --------------------------------------------------------------------------------------
 Then only change lenet_train_test.prototxt as below. The rest of the files in mnist example remain the same.
-Note that source is a text file, which contains the address of your training and test data in HDF5 format.
+Note that "source" is a text file, which contains the address of your training and test data in HDF5 format.
 
 
 name: "LeNet"
